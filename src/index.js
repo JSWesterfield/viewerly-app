@@ -29,3 +29,21 @@ const wsLink = new WebSocketLink({
     reconnect: true,
   },
 });
+
+const subscriptionMiddleware = {
+  applyMiddleware(options, next) {
+    const { token } = store.getState();
+    options.connectionParams = { authToken: token };
+    next();
+  },
+};
+
+// wsLink.subscriptionClient.use([subscriptionMiddleware]);
+//  const link = split(
+//    ({ query }) => {
+//      const { kind, operation } = getMainDefinition(query);
+//      return kind === 'OperationDefinition' && operation === 'subscription';
+//    },
+//    wsLink,
+//    httpLink,
+//  );
