@@ -31,14 +31,15 @@ const wsLink = new WebSocketLink({
 });
 
 const subscriptionMiddleware = {
-  applyMiddleware(options, next) {
+  applyMiddleware(options, next) { // suggested way to extend Redux with custom functionality
     const { token } = store.getState();
     options.connectionParams = { authToken: token };
     next();
   },
 };
 
-wsLink.subscriptionClient.use([subscriptionMiddleware]);
+// GraphQL subsubscription client passes in the Redux subscription middleware
+wsLink.subscriptionClient.use([subscriptionMiddleware]); 
  const link = split(
    ({ query }) => {
      const { kind, operation } = getMainDefinition(query);
@@ -47,3 +48,7 @@ wsLink.subscriptionClient.use([subscriptionMiddleware]);
    wsLink,
    httpLink,
  );
+
+ // GraphQL Apollo client cache use by almost every instance of ApolloClient
+const cache = new InMemoryCache().restore(window.__APOLLO_STATE__);
+
