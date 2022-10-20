@@ -1,5 +1,5 @@
 # Getting Started with Viewerly App
-A React Video Conference App. I call it 'Viewerly'
+A React Video Conference App, we call 'Viewerly'
 
 # Origins 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
