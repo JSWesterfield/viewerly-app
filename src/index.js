@@ -22,3 +22,10 @@ const httpLink = new HttpLink({
   uri: process.env.GRAPHQL_URI,
   credentials: 'same-origin',
 });
+
+const wsLink = new WebSocketLink({
+  uri: process.env.GRAPHQL_WS_URI,
+  options: {
+    reconnect: true,
+  },
+});
