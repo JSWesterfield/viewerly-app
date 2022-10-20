@@ -38,12 +38,12 @@ const subscriptionMiddleware = {
   },
 };
 
-// wsLink.subscriptionClient.use([subscriptionMiddleware]);
-//  const link = split(
-//    ({ query }) => {
-//      const { kind, operation } = getMainDefinition(query);
-//      return kind === 'OperationDefinition' && operation === 'subscription';
-//    },
-//    wsLink,
-//    httpLink,
-//  );
+wsLink.subscriptionClient.use([subscriptionMiddleware]);
+ const link = split(
+   ({ query }) => {
+     const { kind, operation } = getMainDefinition(query);
+     return kind === 'OperationDefinition' && operation === 'subscription';
+   },
+   wsLink,
+   httpLink,
+ );
